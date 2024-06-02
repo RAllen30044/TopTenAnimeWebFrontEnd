@@ -1,0 +1,86 @@
+#headerImgContainer {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+#luffyHeaderIcon {
+  height: 100%;
+  width: 100%;
+}
+#animeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 15px;
+}
+
+#headerNavigationLinks {
+  display: flex;
+  gap: 30px;
+  justify-content: right;
+  width: 50vw;
+  margin-right: 2vw;
+}
+
+#authenticationContainer {
+  position: relative;
+}
+#authForm {
+  position: absolute;
+  border: 1px solid black;
+  padding: 15px;
+  right: 19px;
+  top: 45px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 1px 1px 0px black;
+}
+.buttonContainer {
+  text-align: center;
+  margin-top: 5px;
+}
+.buttonContainer button {
+  border-radius: 5px;
+  padding: 5px;
+}
+.buttonContainer button:hover {
+  cursor: pointer;
+  background-color: orangered;
+  color: white;
+}
+#authForm input {
+  margin: 5px 0;
+  padding: 4px 4px;
+}
+
+#authHeaderText {
+  margin-top: 0;
+}
+.headerLink:hover {
+  cursor: pointer;
+  color: orangered;
+}
+
+#mobileDropdown {
+  position: relative;
+  margin-right: 10px;
+}
+#mobileDropdownBox {
+  position: absolute;
+  border: 1px solid black;
+  padding: 15px;
+  right: 12px;
+  top: 12px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 1px 1px 0px black;
+  width: 67px;
+}
+.fa-bars:hover {
+  cursor: pointer;
+}
+#customBorder {
+  height: 3px;
+  width: 100vw;
+  background-image: linear-gradient(lightgrey, grey, black, grey, lightgrey);
+}

@@ -1,0 +1,11 @@
+#headerText {
+  font-size: 88px;
+  text-align: center;
+  margin-top: 120px;
+}
+#completeHeader{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
