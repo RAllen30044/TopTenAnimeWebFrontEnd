@@ -23,21 +23,22 @@
   }
   #authMobileView{
      display: block;
+  
 }
   #authForm {
-    position: relative;
-    background-color: transparent;
+   
     height: 100vh;
     width: 100vw;
     padding: 0;
     top: 0;
     right: 0;
-    margin: 0 0 0 3px;
+  
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     border: none;
     box-shadow: none;
+    z-index: -1;
   }
 }

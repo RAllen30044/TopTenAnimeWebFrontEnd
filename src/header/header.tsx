@@ -71,19 +71,40 @@ export const Header = () => {
             id="mobileDropdownBox"
             className={`${dropDown === "no" ? "hidden" : ""}`}
           >
-            <h3 id="homeLink" className={`headerLink`}>
+            <h3
+              id="homeLink"
+              className={`headerLink`}
+              onClick={() => {
+                setDropDown("no");
+              }}
+            >
               Home
             </h3>
-            <h3 id="aboutLink" className={`headerLink`}>
+            <h3
+              id="aboutLink"
+              className={`headerLink`}
+              onClick={() => {
+                setDropDown("no");
+              }}
+            >
               About
             </h3>
-            <h3 id="contactLink" className={`headerLink`}>
+            <h3
+              id="contactLink"
+              className={`headerLink`}
+              onClick={() => {
+                setDropDown("no");
+              }}
+            >
               Contact
             </h3>
 
             <h3
               id={`addAnime`}
               className={`headerLink ${token ? "" : "hidden"}`}
+              onClick={() => {
+                setDropDown("no");
+              }}
             >
               Add Anime
             </h3>
@@ -93,6 +114,7 @@ export const Header = () => {
                 className={`headerLink `}
                 onClick={() => {
                   setViewAdminForm("yes");
+                  setDropDown("no");
                 }}
               >
                 Admin
