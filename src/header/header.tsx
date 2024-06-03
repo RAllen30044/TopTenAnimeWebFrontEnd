@@ -2,10 +2,17 @@ import { useState } from "react";
 import { UseAuthProvider } from "../authentication/authProvider";
 import "./header.css";
 import { Authentication } from "../authentication/authenticationPopUp";
+import { AddAnimeForm } from "../AddAnimeForm/AddAnimeForm";
 export type yesNo = "yes" | "no";
 export const Header = () => {
-  const { token, viewAdminForm, setViewAdminForm, setToken } =
-    UseAuthProvider();
+  const {
+    token,
+    viewAdminForm,
+    setViewAdminForm,
+    setToken,
+    viewAddAnimeForm,
+    setViewAddAnimeForm,
+  } = UseAuthProvider();
   const [dropDown, setDropDown] = useState<yesNo>("no");
   return (
     <div id="completeHeader">
@@ -19,29 +26,54 @@ export const Header = () => {
         </div>
         <h2 id="mobileHeaderTitle">Your Anime Top Ten list</h2>
         <div id="headerNavigationLinks">
-          <h3 id="homeLink" className={`headerLink`}>
+          <h3
+            id=""
+            className={`headerLink homeLink`}
+            onClick={() => {
+              setViewAdminForm("no");
+              setViewAddAnimeForm("no");
+            }}
+          >
             Home
           </h3>
-          <h3 id="aboutLink" className={`headerLink`}>
+          <h3
+            className={`headerLink aboutLink`}
+            onClick={() => {
+              setViewAdminForm("no");
+              setViewAddAnimeForm("no");
+            }}
+          >
             About
           </h3>
-          <h3 id="contactLink" className={`headerLink`}>
+          <h3
+            className={`headerLink contactLink`}
+            onClick={() => {
+              setViewAdminForm("no");
+              setViewAddAnimeForm("no");
+            }}
+          >
             Contact
           </h3>
-          <h3 id={`addAnime`} className={`headerLink ${token ? "" : "hidden"}`}>
-            Add Anime
-          </h3>
-
+          <div id="addAnimeContainer" className={`${token ? "" : "hidden"}`}>
+            <h3
+              className={`addAnime  headerLink`}
+              onClick={() => {
+                setViewAddAnimeForm(viewAddAnimeForm === "no" ? "yes" : "no");
+              }}
+            >
+              Add Anime
+            </h3>
+            <AddAnimeForm />
+          </div>
           {!token ? (
             <div id="authenticationContainer">
               <h3
-                id="adminLink"
                 onClick={() => {
                   viewAdminForm === "no"
                     ? setViewAdminForm("yes")
                     : setViewAdminForm("no");
                 }}
-                className={`headerLink`}
+                className={`adminLink headerLink`}
               >
                 Admin
               </h3>
@@ -49,9 +81,9 @@ export const Header = () => {
             </div>
           ) : (
             <h3
-              id="logOutLink"
-              className={`headerLink `}
+              className={`headerLink logOutLink`}
               onClick={() => {
+                setViewAddAnimeForm("no");
                 localStorage.clear();
                 setToken(null);
               }}
@@ -72,8 +104,8 @@ export const Header = () => {
             className={`${dropDown === "no" ? "hidden" : ""}`}
           >
             <h3
-              id="homeLink"
-              className={`headerLink`}
+              id=""
+              className={`headerLink homeLink`}
               onClick={() => {
                 setDropDown("no");
               }}
@@ -81,8 +113,7 @@ export const Header = () => {
               Home
             </h3>
             <h3
-              id="aboutLink"
-              className={`headerLink`}
+              className={`headerLink aboutLink`}
               onClick={() => {
                 setDropDown("no");
               }}
@@ -90,8 +121,7 @@ export const Header = () => {
               About
             </h3>
             <h3
-              id="contactLink"
-              className={`headerLink`}
+              className={`headerLink contactLink`}
               onClick={() => {
                 setDropDown("no");
               }}
@@ -100,8 +130,7 @@ export const Header = () => {
             </h3>
 
             <h3
-              id={`addAnime`}
-              className={`headerLink ${token ? "" : "hidden"}`}
+              className={`headerLink addAnime${token ? "" : "hidden"}`}
               onClick={() => {
                 setDropDown("no");
               }}
@@ -110,8 +139,7 @@ export const Header = () => {
             </h3>
             {!token ? (
               <h3
-                id="adminLink"
-                className={`headerLink `}
+                className={`headerLink adminLink`}
                 onClick={() => {
                   setViewAdminForm("yes");
                   setDropDown("no");
@@ -121,9 +149,9 @@ export const Header = () => {
               </h3>
             ) : (
               <h3
-                id="logOutLink"
-                className={`headerLink `}
+                className={`headerLink logOutLink`}
                 onClick={() => {
+                  setDropDown("no");
                   localStorage.clear();
                   setToken(null);
                 }}

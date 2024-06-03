@@ -3,6 +3,9 @@
   width: 50px;
   border-radius: 50%;
 }
+label{
+  display: block;
+}
 #luffyHeaderIcon {
   height: 100%;
   width: 100%;
@@ -11,8 +14,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 15px;
-  z-index: 1000;
+  margin: 0 ;
+  background-color: white;
+  width: 100%;
 }
 
 #headerNavigationLinks {
@@ -84,4 +88,19 @@
   height: 3px;
   width: 100vw;
   background-image: linear-gradient(lightgrey, grey, black, grey, lightgrey);
+}
+.addAnimeContainer {
+  position: relative;
+  display: flex;
+
+  
+}
+#addAnimeForm {
+  position: absolute;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  right:25px;
+  top:46px;
 }

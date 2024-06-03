@@ -4,7 +4,11 @@ type tokenInfoType = {
     username: string;
   };
 };
-
+export type AnimeInfoType = {
+  title: string;
+  pictureUrl: string;
+  mediaType: string;
+};
 export const baseUrl: string = "http://localhost:3000";
 
 export const authorization = (
@@ -31,3 +35,21 @@ export const authorization = (
     .catch((err) => {
       console.log(err.message);
     });
+
+export const postNewAnimeInfo = (animeObj: object): Promise<AnimeInfoType> =>
+  fetch(`${baseUrl}/anime`, {
+    method: "POST",
+    headers: { "Content-type": "application/json" },
+    body: JSON.stringify(animeObj),
+  })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Failed to create anime");
+      }
+      return res.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+    // export getAllAnime

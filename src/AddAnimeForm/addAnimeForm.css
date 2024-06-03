@@ -1,0 +1,7 @@
+#addAnimeForm input {
+margin-bottom: 5px;
+margin-top: 5px;
+}
+#addAnimeForm input , #addAnimeForm label{
+margin-left: 24px;
+}

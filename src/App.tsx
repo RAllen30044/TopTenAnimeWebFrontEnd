@@ -3,6 +3,7 @@ import { Authentication } from "./authentication/authenticationPopUp";
 import { UseAuthProvider } from "./authentication/authProvider";
 
 import { Header } from "./header/header";
+import { TopTenList } from "./TopTenList/TopTenList";
 
 function App() {
   const { viewAdminForm } = UseAuthProvider();
@@ -17,6 +18,7 @@ function App() {
       ) : (
         ""
       )}
+      <TopTenList />
     </>
   );
 }

@@ -2,8 +2,8 @@ import { createContext, ReactNode, useContext, useState } from "react";
 import { yesNo } from "../header/header";
 
 type AuthProviderType = {
-  addAnime: addAnimeAuth;
-  setAddAnime: React.Dispatch<React.SetStateAction<addAnimeAuth>>;
+  viewAddAnimeForm: yesNo;
+  setViewAddAnimeForm: React.Dispatch<React.SetStateAction<yesNo>>;
   token: string | null;
   setToken: React.Dispatch<React.SetStateAction<string | null>>;
   username: string;
@@ -18,9 +18,9 @@ export const AuthContext = createContext<AuthProviderType>(
   {} as AuthProviderType
 );
 
-type addAnimeAuth = "authorized" | "notAuthorized";
+
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [addAnime, setAddAnime] = useState<addAnimeAuth>("notAuthorized");
+  const [viewAddAnimeForm, setViewAddAnimeForm] = useState<yesNo>("no");
   const [viewAdminForm, setViewAdminForm] = useState<yesNo>("no");
   const [token, setToken] = useState<string | null>(
     localStorage.getItem("token") || null
@@ -31,8 +31,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   return (
     <AuthContext.Provider
       value={{
-        addAnime,
-        setAddAnime,
+        viewAddAnimeForm,
+        setViewAddAnimeForm,
         token,
         setToken,
         username,

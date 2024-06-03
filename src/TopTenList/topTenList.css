@@ -1,0 +1,30 @@
+#animeList {
+  display: flex;
+}
+
+#allAnime {
+  width: 400px;
+  border: 1px solid black;
+  box-shadow: 2px 2px 1px black;
+  border-radius: 5px;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card {
+  display: flex;
+  border: 1px solid black;
+  width: 85%;
+  margin: 20px 0;
+  flex-direction: column;
+}
+.pictureContainer {
+  height: 200px;
+  width: 90%;
+  text-align: center;
+}
+img {
+  height: 100%;
+  width: 100%;
+}
