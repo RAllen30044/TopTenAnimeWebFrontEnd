@@ -1,35 +1,124 @@
 import { useEffect, useState } from "react";
 import "./topTenList.css";
 import { AnimeInfoType } from "../apiFunctions";
+import toast from "react-hot-toast";
 
 export const TopTenList = () => {
+  const getFavorites = localStorage.getItem("favorites");
+  const getTopTen = localStorage.getItem("topTen");
+
   const [allAnime, setAllAnime] = useState<AnimeInfoType[]>([]);
-  const [favoriteAnime, setFavoriteAnime] = useState<AnimeInfoType[]>([]);
-  const [topTenAnime, setTopTenAnime] = useState<AnimeInfoType[]>([]);
+  const [animeList, setAnimeList] = useState<AnimeInfoType[]>([]);
+  const [favoriteAnime, setFavoriteAnime] = useState<AnimeInfoType[]>(
+    getFavorites ? JSON.parse(getFavorites) : []
+  );
+  const [topTenAnime, setTopTenAnime] = useState<AnimeInfoType[]>(
+    getTopTen ? JSON.parse(getTopTen) : []
+  );
+
+  const characters = "0123456789abcdefghijklmnopqrstuvwxyz"
+    .toUpperCase()
+    .split("");
+  console.log(characters);
 
   useEffect(() => {
     const fetchAnime = async () => {
-      const response = await fetch("http://localhost:3000/someAnime");
+      const response = await fetch("http://localhost:3000/anime");
       const data = await response.json();
       setAllAnime(data);
+      setAnimeList(data);
     };
     fetchAnime();
   }, []);
 
   return (
     <div id="animeList">
-      <div className="sectionContainer">
+      <div className="sectionContainer" id="allAnimeContainer">
         <h1>Anime List</h1>
+        <div className="lettersContainer">
+          {characters.map((char) => (
+            <h2
+              className="letters"
+              onClick={() => {
+                setAnimeList(
+                  allAnime.filter((anime) => {
+                    return anime.title.split("")[0] === char;
+                  })
+                );
+              }}
+            >
+              {char}
+            </h2>
+          ))}
+        </div>
+
         <section className="listContainer" id="allAnime">
-          {allAnime.map((anime, index) => (
-            <div id={`card${index}`} key={index} className="card">
-              <h3 className="title">Title: {anime.title}</h3>
-              <h3 className="mediaType">Media: {anime.mediaType}</h3>
-              <div className="pictureContainer">
-                <img src={anime.pictureUrl} alt="pictureName" />
-              </div>
-              <div className="buttonContainer">
-                <button> Add to Favorites</button>
+          {animeList.map((anime, index) => (
+            <div className="cardContainer" key={index}>
+              <div
+                id={`card${index}`}
+                className={`card ${index % 2 === 0 ? "even" : "odd"}`}
+              >
+                <h3 className="title">Title: {anime.title}</h3>
+                <h3 className="mediaType">Media: {anime.mediaType}</h3>
+                <div className="pictureContainer">
+                  <img src={anime.pictureUrl} alt="pictureName" />
+                </div>
+                <div className="buttonContainer">
+                  <button
+                    onClick={() => {
+                      if (
+                        favoriteAnime.some(
+                          (favoriteAnime) => favoriteAnime.title === anime.title
+                        )
+                      ) {
+                        toast.error(
+                          `${anime.title} is already on the favorites list`
+                        );
+                        return;
+                      }
+                      setFavoriteAnime([...favoriteAnime, anime]);
+                      localStorage.setItem(
+                        "favorites",
+                        JSON.stringify([...favoriteAnime, anime])
+                      );
+                    }}
+                  >
+                    Add to Favorites
+                  </button>
+                  <button
+                    onClick={() => {
+                      if (
+                        favoriteAnime.some(
+                          (favoriteAnime) => favoriteAnime.title === anime.title
+                        )
+                      ) {
+                        toast.error(
+                          `${anime.title} is already on the favorites list`
+                        );
+                        return;
+                      }
+                      if (topTenAnime.length === 10) {
+                        toast.error(
+                          "Top Ten list is full. Please remove anime from Top tens list if you which to add another anime."
+                        );
+                        return;
+                      }
+                      setFavoriteAnime([...favoriteAnime, anime]);
+                      localStorage.setItem(
+                        "favorites",
+                        JSON.stringify([...favoriteAnime, anime])
+                      );
+                      setTopTenAnime([...topTenAnime, anime]);
+                      localStorage.setItem(
+                        "topTen",
+                        JSON.stringify([...topTenAnime, anime])
+                      );
+                    }}
+                  >
+                    Add to Top Ten
+                  </button>
+                </div>
               </div>
             </div>
           ))}
@@ -38,15 +127,78 @@ export const TopTenList = () => {
       <div className="sectionContainer">
         <h1>Favorites</h1>
         <section className="listContainer" id="favoriteAnime">
-          {allAnime.map((anime, index) => (
-            <div id={`card${index}`} key={index} className="card">
+          {favoriteAnime.map((anime, index) => (
+            <div
+              id={`card${index}`}
+              key={index}
+              className={`card ${index % 2 === 0 ? "even" : "odd"}`}
+            >
               <h3 className="title">Title: {anime.title}</h3>
               <h3 className="mediaType">Media: {anime.mediaType}</h3>
               <div className="pictureContainer">
                 <img src={anime.pictureUrl} alt="pictureName" />
               </div>
               <div className="buttonContainer">
-                <button> Add to Favorites</button>
+                <button
+                  onClick={() => {
+                    if (
+                      favoriteAnime.some(
+                        (favoriteAnime) => favoriteAnime.title === anime.title
+                      )
+                    ) {
+                      toast.error(
+                        `${anime.title} is already on the Top Ten's list`
+                      );
+                      return;
+                    }
+                    if (topTenAnime.length === 10) {
+                      toast.error(
+                        "Top Ten list is full. Please remove anime from Top tens list if you which to add another anime."
+                      );
+                      return;
+                    }
+                    setTopTenAnime([...topTenAnime, anime]);
+                    localStorage.setItem(
+                      "topTen",
+                      JSON.stringify([...topTenAnime, anime])
+                    );
+                  }}
+                >
+                  Add to Top Ten
+                </button>
+                <button
+                  onClick={() => {
+                    setFavoriteAnime(
+                      favoriteAnime.filter(
+                        (favoriteAnime) => favoriteAnime !== anime
+                      )
+                    );
+
+                    localStorage.setItem(
+                      "favorites",
+                      JSON.stringify(
+                        favoriteAnime.filter(
+                          (favoriteAnime) => favoriteAnime !== anime
+                        )
+                      )
+                    );
+
+                    setTopTenAnime(
+                      topTenAnime.filter((topTenAnime) => topTenAnime !== anime)
+                    );
+
+                    localStorage.setItem(
+                      "topTen",
+                      JSON.stringify(
+                        topTenAnime.filter(
+                          (topTenAnime) => topTenAnime !== anime
+                        )
+                      )
+                    );
+                  }}
+                >
+                  Remove from Favorites
+                </button>
               </div>
             </div>
           ))}
@@ -56,15 +208,90 @@ export const TopTenList = () => {
         <h1>Top Ten Anime</h1>
 
         <section className="listContainer" id="topTenAnime">
-          {allAnime.map((anime, index) => (
-            <div id={`card${index}`} key={index} className="card">
-              <h3 className="title">Title: {anime.title}</h3>
-              <h3 className="mediaType">Media: {anime.mediaType}</h3>
-              <div className="pictureContainer">
-                <img src={anime.pictureUrl} alt="pictureName" />
+          {topTenAnime.map((anime, index) => (
+            <div className="cardContainer" key={index}>
+              <div className="number">
+                <h3>#{index + 1}</h3>
               </div>
-              <div className="buttonContainer">
-                <button> Remove from Top Ten</button>
+              <div
+                id={`card${index}`}
+                className={`card ${index % 2 === 0 ? "even" : "odd"}`}
+              >
+                <h3 className="title">Title: {anime.title}</h3>
+                <h3 className="mediaType">Media: {anime.mediaType}</h3>
+                <div className="pictureContainer">
+                  <img src={anime.pictureUrl} alt="pictureName" />
+                </div>
+                <div className="buttonContainer">
+                  <button
+                    onClick={() => {
+                      setTopTenAnime(
+                        topTenAnime.filter(
+                          (topTenAnime) => topTenAnime !== anime
+                        )
+                      );
+                      localStorage.setItem(
+                        "topTen",
+                        JSON.stringify(
+                          topTenAnime.filter(
+                            (topTenAnime) => topTenAnime !== anime
+                          )
+                        )
+                      );
+                    }}
+                  >
+                    {" "}
+                    Remove from Top Ten
+                  </button>
+                  <button
+                    disabled={index === 0 ? true : false}
+                    style={
+                      index === 0
+                        ? { background: "lightgrey" }
+                        : { background: "" }
+                    }
+                    onClick={() => {
+                      const filteredAnime = topTenAnime.filter(
+                        (myAnimeList) => myAnimeList !== anime
+                      );
+
+                      filteredAnime.splice(index - 1, 0, anime);
+
+                      setTopTenAnime(filteredAnime);
+                      localStorage.setItem(
+                        "topTen",
+                        JSON.stringify(filteredAnime)
+                      );
+                    }}
+                  >
+                    {" "}
+                    Move Up Top Ten List
+                  </button>
+                  <button
+                    disabled={index === topTenAnime.length - 1 ? true : false}
+                    style={
+                      index === 9
+                        ? { background: "lightgrey" }
+                        : { background: "" }
+                    }
+                    onClick={() => {
+                      const filteredAnime = topTenAnime.filter(
+                        (myAnimeList) => myAnimeList !== anime
+                      );
+
+                      filteredAnime.splice(index + 1, 0, anime);
+
+                      setTopTenAnime(filteredAnime);
+                      localStorage.setItem(
+                        "topTen",
+                        JSON.stringify(filteredAnime)
+                      );
+                    }}
+                  >
+                    {" "}
+                    Move Down Top Ten List
+                  </button>
+                </div>
               </div>
             </div>
           ))}

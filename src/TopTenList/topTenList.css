@@ -3,38 +3,111 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 45px;
+}
 
+#animeList .buttonContainer {
+  font-size: 20px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.lettersContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
+  gap: 1px;
+}
+.letters:hover{
+color: orangered;
+cursor: pointer;
+font-size: 20px;
+}
+#animeList button {
+  font-size: 20px;
 }
 .sectionContainer h1 {
   text-align: center;
 }
-.scrollContainer {
-  height: 600px;
-  width: 400px;
+#allAnimeContainer  h1 {
+  margin-bottom: 0;
 }
-.listContainer {
-  width: 100%;
-  border: 1px solid black;
-  box-shadow: 2px 2px 1px black;
-  border-radius: 5px;
-  margin-left: 10px;
- 
-  height: 100%;
+#allAnimeContainer  h3 {
+  font-size: 20;
 }
 
+.listContainer {
+  width: 425px;
+  border: 1px solid black;
+  box-shadow: 2px 2px 1px black;
+  border-radius: 10px;
+  margin-left: 10px;
+  height: 600px;
+  overflow: scroll;
+  box-shadow: 2px 2px 1px black;
+}
+.listContainer h3 {
+  text-align: center;
+  font-size: 28px;
+  margin: 14px auto;
+}
+.cardContainer {
+  display: flex;
+}
+.cardContainer {
+  display: flex;
+}
 .card {
   display: flex;
   border: 1px solid black;
-  width: 85%;
-  margin: 20px 0;
+  width: 80%;
+  margin: 30px auto;
   flex-direction: column;
+  border-radius: 10px;
+  box-shadow: 2px 2px 1px black;
+}
+.even {
+  background-color: black;
+  color: white;
+  box-shadow: 2px 2px 1px orangered;
+}
+.odd button {
+  background-color: black;
+  color: white;
+}
+.odd button:hover {
+  background-color: green;
+  color: white;
+}
+.odd {
+  background-color: orangered;
+  color: white;
+  box-shadow: 2px 2px 1px black;
+}
+.even button {
+  background-color: orangered;
+  color: white;
+}
+.even button:hover {
+  background-color: green;
+  color: white;
 }
 .pictureContainer {
   height: 200px;
-  width: 90%;
+  width: 100%;
   text-align: center;
 }
 img {
   height: 100%;
   width: 100%;
+}
+#topTenAnime .card {
+  margin-left: 14px;
+}
+.number {
+  margin-left: 8px;
+}
+#topTenAnime.listContainer, #favoriteAnime.listContainer{
+  margin-top: 77px;
 }

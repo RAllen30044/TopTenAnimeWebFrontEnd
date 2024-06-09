@@ -47,6 +47,7 @@ label{
 .buttonContainer button {
   border-radius: 5px;
   padding: 5px;
+  
 }
 .buttonContainer button:hover {
   cursor: pointer;
@@ -56,6 +57,9 @@ label{
 #authForm input {
   margin: 5px 0;
   padding: 4px 4px;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 2px 2px 1px black;
 }
 
 #authHeaderText {
