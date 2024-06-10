@@ -19,7 +19,6 @@ export const TopTenList = () => {
   const characters = "0123456789abcdefghijklmnopqrstuvwxyz"
     .toUpperCase()
     .split("");
-  console.log(characters);
 
   useEffect(() => {
     const fetchAnime = async () => {
@@ -36,8 +35,9 @@ export const TopTenList = () => {
       <div className="sectionContainer" id="allAnimeContainer">
         <h1>Anime List</h1>
         <div className="lettersContainer">
-          {characters.map((char) => (
+          {characters.map((char, index) => (
             <h2
+              key={index}
               className="letters"
               onClick={() => {
                 setAnimeList(
@@ -67,6 +67,12 @@ export const TopTenList = () => {
                 <div className="buttonContainer">
                   <button
                     onClick={() => {
+                      if (favoriteAnime.length === 50) {
+                        toast.error(
+                          "Favorites list is full. Please remove anime from the favorites list if you which to add another anime."
+                        );
+                        return;
+                      }
                       if (
                         favoriteAnime.some(
                           (favoriteAnime) => favoriteAnime.title === anime.title
@@ -270,7 +276,7 @@ export const TopTenList = () => {
                   <button
                     disabled={index === topTenAnime.length - 1 ? true : false}
                     style={
-                      index === 9
+                      index === 9 || index === topTenAnime.length - 1
                         ? { background: "lightgrey" }
                         : { background: "" }
                     }

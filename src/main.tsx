@@ -7,6 +7,7 @@ import ErrorPage from "./errorPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AuthProvider } from "./authentication/authProvider.tsx";
 import { Toaster } from "react-hot-toast";
+import { ComponentProvider } from "./ComponentProvider.tsx";
 
 const router = createBrowserRouter([
   {
@@ -19,8 +20,10 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <AuthProvider>
-      <Toaster />
-      <RouterProvider router={router} />
+      <ComponentProvider>
+        <Toaster />
+        <RouterProvider router={router} />
+      </ComponentProvider>
     </AuthProvider>
   </React.StrictMode>
 );

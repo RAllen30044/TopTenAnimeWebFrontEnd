@@ -27,7 +27,7 @@ export const authorization = (
       if (!res.ok) {
         throw new Error("Failed to login");
       }
-      console.log(res);
+  
 
       return res.json();
     })

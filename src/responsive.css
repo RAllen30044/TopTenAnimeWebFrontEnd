@@ -41,4 +41,7 @@
     box-shadow: none;
     z-index: -1;
   }
+  #aboutContainer{
+    margin-top: 100px;
+  }
 }

@@ -3,6 +3,7 @@ import { UseAuthProvider } from "../authentication/authProvider";
 import "./header.css";
 import { Authentication } from "../authentication/authenticationPopUp";
 import { AddAnimeForm } from "../AddAnimeForm/AddAnimeForm";
+import { UseComponentProvider } from "../ComponentProvider";
 export type yesNo = "yes" | "no";
 export const Header = () => {
   const {
@@ -14,6 +15,7 @@ export const Header = () => {
     setViewAddAnimeForm,
   } = UseAuthProvider();
   const [dropDown, setDropDown] = useState<yesNo>("no");
+  const { setActiveComponent } = UseComponentProvider();
   return (
     <div id="completeHeader">
       <nav id="animeHeader">
@@ -22,6 +24,11 @@ export const Header = () => {
             src="https://icon-library.com/images/anime-icon-png/anime-icon-png-5.jpg"
             id="luffyHeaderIcon"
             alt="Monkey D. Luffy"
+            onClick={() => {
+              setViewAdminForm("no");
+              setViewAddAnimeForm("no");
+              setActiveComponent("homePage");
+            }}
           />
         </div>
         <h2 id="mobileHeaderTitle">Your Anime Top Ten list</h2>
@@ -32,6 +39,7 @@ export const Header = () => {
             onClick={() => {
               setViewAdminForm("no");
               setViewAddAnimeForm("no");
+              setActiveComponent("homePage");
             }}
           >
             Home
@@ -39,6 +47,7 @@ export const Header = () => {
           <h3
             className={`headerLink aboutLink`}
             onClick={() => {
+              setActiveComponent("about");
               setViewAdminForm("no");
               setViewAddAnimeForm("no");
             }}
@@ -48,6 +57,7 @@ export const Header = () => {
           <h3
             className={`headerLink contactLink`}
             onClick={() => {
+              setActiveComponent("contact");
               setViewAdminForm("no");
               setViewAddAnimeForm("no");
             }}
