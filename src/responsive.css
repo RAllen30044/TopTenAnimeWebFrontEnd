@@ -8,6 +8,7 @@
      display: none;
 }
 @media screen and (max-width: 760px) {
+
   #mobileDropdown {
     display: block;
   }
@@ -42,6 +43,15 @@
     z-index: -1;
   }
   #aboutContainer{
+    margin-top: 100px;
+  }
+  #contact{
+    margin-top: 100px;
+  }
+  .contactContainer{
+    flex-direction: column;
+  }
+  #yourAnimeTopTenList{
     margin-top: 100px;
   }
 }

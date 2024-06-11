@@ -27,7 +27,6 @@ export const authorization = (
       if (!res.ok) {
         throw new Error("Failed to login");
       }
-  
 
       return res.json();
     })
@@ -52,4 +51,20 @@ export const postNewAnimeInfo = (animeObj: object): Promise<AnimeInfoType> =>
       console.log(err);
     });
 
-    // export getAllAnime
+export const sendEmail = (anime: object) =>
+  fetch(`${baseUrl}/sendEmail`, {
+    method: "POST",
+    headers: { "Content-type": "application/json" },
+    body: JSON.stringify(anime),
+  })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Failed to send email");
+      }
+      return res.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+// export getAllAnime

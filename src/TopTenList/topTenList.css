@@ -4,7 +4,15 @@
   justify-content: center;
   gap: 45px;
 }
-
+#sortContainer {
+  text-align: center;
+}
+#sortContainer input {
+  font-size: 25px;
+  border: solid 1px black;
+  border-radius: 5px;
+  box-shadow: 2px 2px 1px black;
+}
 #animeList .buttonContainer {
   font-size: 20px;
   margin: 20px auto;
@@ -19,10 +27,10 @@
   margin-top: 10px;
   gap: 1px;
 }
-.letters:hover{
-color: orangered;
-cursor: pointer;
-font-size: 20px;
+.letters:hover {
+  color: orangered;
+  cursor: pointer;
+  font-size: 20px;
 }
 #animeList button {
   font-size: 20px;
@@ -30,10 +38,10 @@ font-size: 20px;
 .sectionContainer h1 {
   text-align: center;
 }
-#allAnimeContainer  h1 {
+#allAnimeContainer h1 {
   margin-bottom: 0;
 }
-#allAnimeContainer  h3 {
+#allAnimeContainer h3 {
   font-size: 20;
 }
 
@@ -108,6 +116,7 @@ img {
 .number {
   margin-left: 8px;
 }
-#topTenAnime.listContainer, #favoriteAnime.listContainer{
+#topTenAnime.listContainer,
+#favoriteAnime.listContainer {
   margin-top: 77px;
 }
