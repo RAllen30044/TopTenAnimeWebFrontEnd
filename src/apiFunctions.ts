@@ -1,3 +1,5 @@
+import { baseURL } from "./App";
+
 type tokenInfoType = {
   token: string;
   usernameInformation: {
@@ -9,13 +11,13 @@ export type AnimeInfoType = {
   pictureUrl: string;
   mediaType: string;
 };
-export const baseUrl: string = "http://localhost:3000";
+// export const baseUrl: string = "http://localhost:3000";
 
 export const authorization = (
   username: string,
   password: string
 ): Promise<tokenInfoType> =>
-  fetch(`${baseUrl}/auth/login`, {
+  fetch(`${baseURL}/auth/login`, {
     method: "POST",
     headers: { "Content-type": "application/json" },
     body: JSON.stringify({
@@ -36,7 +38,7 @@ export const authorization = (
     });
 
 export const postNewAnimeInfo = (animeObj: object): Promise<AnimeInfoType> =>
-  fetch(`${baseUrl}/anime`, {
+  fetch(`${baseURL}/anime`, {
     method: "POST",
     headers: { "Content-type": "application/json" },
     body: JSON.stringify(animeObj),
@@ -52,7 +54,7 @@ export const postNewAnimeInfo = (animeObj: object): Promise<AnimeInfoType> =>
     });
 
 export const sendEmail = (anime: object) =>
-  fetch(`${baseUrl}/sendEmail`, {
+  fetch(`${baseURL}/sendEmail`, {
     method: "POST",
     headers: { "Content-type": "application/json" },
     body: JSON.stringify(anime),

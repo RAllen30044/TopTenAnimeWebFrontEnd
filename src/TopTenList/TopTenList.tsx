@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import "./topTenList.css";
 import { AnimeInfoType } from "../apiFunctions";
 import toast from "react-hot-toast";
+import { baseURL } from "../App";
+
+
 
 export const TopTenList = () => {
   const getFavorites = localStorage.getItem("favorites");
@@ -22,7 +25,7 @@ export const TopTenList = () => {
 
   useEffect(() => {
     const fetchAnime = async () => {
-      const response = await fetch("http://localhost:3000/anime");
+      const response = await fetch(`${baseURL}/anime`)
       const data = await response.json();
       setAllAnime(data);
       setAnimeList(data);

@@ -8,6 +8,7 @@ import { Contact } from "./Contact/Contact";
 import { Header } from "./header/header";
 import { TopTenList } from "./TopTenList/TopTenList";
 
+export const baseURL="https://animetoptenbackend.fly.dev";
 function App() {
   const { viewAdminForm } = UseAuthProvider();
   const { activeComponent } = UseComponentProvider();
