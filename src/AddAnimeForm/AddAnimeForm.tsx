@@ -13,8 +13,8 @@ export const AddAnimeForm = () => {
   return (
     <form
       method="POST"
-      id="addAnimeForm"
-      className={`${viewAddAnimeForm === "no" ? "hidden" : ""}`}
+      
+      className={`addAnimeForm ${viewAddAnimeForm === "no" ? "hidden" : ""}`}
       onSubmit={async (e) => {
         e.preventDefault();
         const addAnimeInfo = await postNewAnimeInfo({
