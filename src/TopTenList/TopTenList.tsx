@@ -4,8 +4,6 @@ import { AnimeInfoType } from "../apiFunctions";
 import toast from "react-hot-toast";
 import { baseURL } from "../App";
 
-
-
 export const TopTenList = () => {
   const getFavorites = localStorage.getItem("favorites");
   const getTopTen = localStorage.getItem("topTen");
@@ -25,7 +23,7 @@ export const TopTenList = () => {
 
   useEffect(() => {
     const fetchAnime = async () => {
-      const response = await fetch(`${baseURL}/anime`)
+      const response = await fetch(`${baseURL}/anime`);
       const data = await response.json();
       setAllAnime(data);
       setAnimeList(data);
@@ -157,79 +155,81 @@ export const TopTenList = () => {
           <h1>Favorites</h1>
           <section className="listContainer" id="favoriteAnime">
             {favoriteAnime.map((anime, index) => (
-              <div
-                id={`card${index}`}
-                key={index}
-                className={`card ${index % 2 === 0 ? "even" : "odd"}`}
-              >
-                <h3 className="title">Title: {anime.title}</h3>
-                <h3 className="mediaType">Media: {anime.mediaType}</h3>
-                <div className="pictureContainer">
-                  <img src={anime.pictureUrl} alt="pictureName" />
-                </div>
-                <div className="buttonContainer">
-                  <button
-                    onClick={() => {
-                      if (
-                        topTenAnime.some(
-                          (favoriteAnime) => favoriteAnime.title === anime.title
-                        )
-                      ) {
-                        toast.error(
-                          `${anime.title} is already on the Top Ten's list`
+              <div className="cardContainer" key={index}>
+                <div
+                  id={`card${index}`}
+                  className={`card ${index % 2 === 0 ? "even" : "odd"}`}
+                >
+                  <h3 className="title">Title: {anime.title}</h3>
+                  <h3 className="mediaType">Media: {anime.mediaType}</h3>
+                  <div className="pictureContainer">
+                    <img src={anime.pictureUrl} alt="pictureName" />
+                  </div>
+                  <div className="buttonContainer">
+                    <button
+                      onClick={() => {
+                        if (
+                          topTenAnime.some(
+                            (favoriteAnime) =>
+                              favoriteAnime.title === anime.title
+                          )
+                        ) {
+                          toast.error(
+                            `${anime.title} is already on the Top Ten's list`
+                          );
+                          return;
+                        }
+                        if (topTenAnime.length === 10) {
+                          toast.error(
+                            "Top Ten list is full. Please remove anime from Top tens list if you which to add another anime."
+                          );
+                          return;
+                        }
+                        setTopTenAnime([...topTenAnime, anime]);
+                        localStorage.setItem(
+                          "topTen",
+                          JSON.stringify([...topTenAnime, anime])
                         );
-                        return;
-                      }
-                      if (topTenAnime.length === 10) {
-                        toast.error(
-                          "Top Ten list is full. Please remove anime from Top tens list if you which to add another anime."
-                        );
-                        return;
-                      }
-                      setTopTenAnime([...topTenAnime, anime]);
-                      localStorage.setItem(
-                        "topTen",
-                        JSON.stringify([...topTenAnime, anime])
-                      );
-                    }}
-                  >
-                    Add to Top Ten
-                  </button>
-                  <button
-                    onClick={() => {
-                      setFavoriteAnime(
-                        favoriteAnime.filter(
-                          (favoriteAnime) => favoriteAnime !== anime
-                        )
-                      );
-
-                      localStorage.setItem(
-                        "favorites",
-                        JSON.stringify(
+                      }}
+                    >
+                      Add to Top Ten
+                    </button>
+                    <button
+                      onClick={() => {
+                        setFavoriteAnime(
                           favoriteAnime.filter(
                             (favoriteAnime) => favoriteAnime !== anime
                           )
-                        )
-                      );
+                        );
 
-                      setTopTenAnime(
-                        topTenAnime.filter(
-                          (topTenAnime) => topTenAnime !== anime
-                        )
-                      );
+                        localStorage.setItem(
+                          "favorites",
+                          JSON.stringify(
+                            favoriteAnime.filter(
+                              (favoriteAnime) => favoriteAnime !== anime
+                            )
+                          )
+                        );
 
-                      localStorage.setItem(
-                        "topTen",
-                        JSON.stringify(
+                        setTopTenAnime(
                           topTenAnime.filter(
                             (topTenAnime) => topTenAnime !== anime
                           )
-                        )
-                      );
-                    }}
-                  >
-                    Remove from Favorites
-                  </button>
+                        );
+
+                        localStorage.setItem(
+                          "topTen",
+                          JSON.stringify(
+                            topTenAnime.filter(
+                              (topTenAnime) => topTenAnime !== anime
+                            )
+                          )
+                        );
+                      }}
+                    >
+                      Remove from Favorites
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}

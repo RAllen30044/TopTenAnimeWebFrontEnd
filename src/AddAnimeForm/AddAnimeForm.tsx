@@ -22,7 +22,7 @@ export const AddAnimeForm = () => {
           mediaType: mediaType,
           pictureUrl: pictureUrl,
         });
-        
+
         console.log(addAnimeInfo);
         if (!addAnimeInfo) {
           toast.error("Anime information has not been saved");
@@ -33,38 +33,40 @@ export const AddAnimeForm = () => {
         return addAnimeInfo;
       }}
     >
-      <h3>Enter Missing Anime Information</h3>
+      <div id="addAnimeFormInputContainer">
+        <h3>Enter Missing Anime Information</h3>
 
-      <label htmlFor="title">Title</label>
-      <input
-        id="title"
-        type="text"
-        name="title"
-        placeholder="Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
+        <label htmlFor="title">Title</label>
+        <input
+          id="title"
+          type="text"
+          name="title"
+          placeholder="Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
 
-      <label htmlFor="mediaType">Media Type</label>
-      <input
-        id="mediaType"
-        type="text"
-        name="mediaType"
-        placeholder="TV, OVA, Movie..."
-        value={mediaType}
-        onChange={(e) => setMediaType(e.target.value)}
-      />
-      <label htmlFor="pictureUrl">Picture web address</label>
-      <input
-        id="pictureUrl"
-        type="text"
-        name="pictureUrl"
-        placeholder="Picture Url"
-        value={pictureUrl}
-        onChange={(e) => setPictureUrl(e.target.value)}
-      />
-      <div className="buttonContainer">
-        <button type="submit">Submit</button>
+        <label htmlFor="mediaType">Media Type</label>
+        <input
+          id="mediaType"
+          type="text"
+          name="mediaType"
+          placeholder="TV, OVA, Movie..."
+          value={mediaType}
+          onChange={(e) => setMediaType(e.target.value)}
+        />
+        <label htmlFor="pictureUrl">Picture web address</label>
+        <input
+          id="pictureUrl"
+          type="text"
+          name="pictureUrl"
+          placeholder="Picture Url"
+          value={pictureUrl}
+          onChange={(e) => setPictureUrl(e.target.value)}
+        />
+        <div className="buttonContainer">
+          <button type="submit">Submit</button>
+        </div>
       </div>
     </form>
   );

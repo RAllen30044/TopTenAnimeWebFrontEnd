@@ -11,7 +11,7 @@ export const Header = () => {
     viewAdminForm,
     setViewAdminForm,
     setToken,
-    viewAddAnimeForm,
+
     setViewAddAnimeForm,
   } = UseAuthProvider();
   const [dropDown, setDropDown] = useState<yesNo>("no");
@@ -68,14 +68,25 @@ export const Header = () => {
             <h3
               className={`addAnime  headerLink`}
               onClick={() => {
-                setViewAddAnimeForm(viewAddAnimeForm === "no" ? "yes" : "no");
+                setViewAddAnimeForm("yes");
               }}
             >
               Add Anime
             </h3>
             <AddAnimeForm />
           </div>
-          {!token ? (
+          {token ? (
+            <h3
+              className={`headerLink logOutLink`}
+              onClick={() => {
+                setViewAddAnimeForm("no");
+                localStorage.clear();
+                setToken(null);
+              }}
+            >
+              LogOut
+            </h3>
+          ) : (
             <div id="authenticationContainer">
               <h3
                 onClick={() => {
@@ -89,17 +100,6 @@ export const Header = () => {
               </h3>
               <Authentication />
             </div>
-          ) : (
-            <h3
-              className={`headerLink logOutLink`}
-              onClick={() => {
-                setViewAddAnimeForm("no");
-                localStorage.clear();
-                setToken(null);
-              }}
-            >
-              LogOut
-            </h3>
           )}
         </div>
         <div id="mobileDropdown">
@@ -118,6 +118,9 @@ export const Header = () => {
               className={`headerLink homeLink`}
               onClick={() => {
                 setDropDown("no");
+                setViewAddAnimeForm("no");
+                setViewAdminForm("no");
+                setActiveComponent("homePage");
               }}
             >
               Home
@@ -125,7 +128,10 @@ export const Header = () => {
             <h3
               className={`headerLink aboutLink`}
               onClick={() => {
+                setActiveComponent("about");
                 setDropDown("no");
+                setViewAddAnimeForm("no");
+                setViewAdminForm("no");
               }}
             >
               About
@@ -134,15 +140,20 @@ export const Header = () => {
               className={`headerLink contactLink`}
               onClick={() => {
                 setDropDown("no");
+                setViewAddAnimeForm("no");
+                setViewAdminForm("no");
+                setActiveComponent("contact");
               }}
             >
               Contact
             </h3>
 
             <h3
-              className={`headerLink addAnime${token ? "" : "hidden"}`}
+              className={`headerLink addAnime ${token ? "" : "hidden"}`}
               onClick={() => {
                 setDropDown("no");
+                setViewAdminForm("no");
+                setViewAddAnimeForm("yes");
               }}
             >
               Add Anime

@@ -4,11 +4,13 @@
 #mobileHeaderTitle {
   display: none;
 }
-#authMobileView{
-     display: none;
+#authMobileView {
+  display: none;
+}
+#animeFormMobileView {
+  display: none;
 }
 @media screen and (max-width: 760px) {
-
   #mobileDropdown {
     display: block;
   }
@@ -22,36 +24,67 @@
     display: block;
     text-align: center;
   }
-  #authMobileView{
-     display: block;
-  
-}
+  #authMobileView {
+    display: block;
+  }
   #authForm {
-   
     height: 100vh;
     width: 100vw;
     padding: 0;
     top: 0;
     right: 0;
-  
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     border: none;
     box-shadow: none;
-    z-index: -1;
+    z-index: 1;
   }
-  #aboutContainer{
+  #animeFormMobileView {
+    display: block;
+  }
+  #addAnimeForm {
+    height: 100vh;
+    width: 100vw;
+    padding: 0;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    box-shadow: none;
+    z-index: 10;
+  }
+  #aboutContainer {
     margin-top: 100px;
   }
-  #contact{
+  #contact {
     margin-top: 100px;
   }
-  .contactContainer{
+  .contactContainer {
     flex-direction: column;
   }
-  #yourAnimeTopTenList{
+  #yourAnimeTopTenList {
     margin-top: 100px;
+  }
+  #addAnimeFormInputContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 85vw;
+    height: 85vh;
+    padding: 20px;
+  }
+  .lettersContainer {
+    gap: 0;
+  }
+  .listContainer {
+   
+    width: 100vw;
+    margin-left: 0;
   }
 }

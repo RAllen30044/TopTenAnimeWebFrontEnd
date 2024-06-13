@@ -1,7 +1,17 @@
-#addAnimeForm input {
-margin-bottom: 5px;
-margin-top: 5px;
+#addAnimeForm {
+  border: 1px solid black;
+  border-radius: 7px;
+  box-shadow: 2px 2px 1px black;
 }
-#addAnimeForm input , #addAnimeForm label{
-margin-left: 24px;
+
+#addAnimeForm input {
+  margin-bottom: 5px;
+  margin-top: 5px;
+  border: 1px solid black;
+  box-shadow: 2px 2px 1px black;
+  border-radius: 5px;
+}
+#addAnimeForm input,
+#addAnimeForm label {
+  margin-left: 24px;
 }
