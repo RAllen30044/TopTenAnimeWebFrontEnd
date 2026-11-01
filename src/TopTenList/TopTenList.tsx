@@ -81,7 +81,7 @@ export const TopTenList = () => {
                   <h3 className="title">Title: {anime.title}</h3>
                   <h3 className="mediaType">Media: {anime.mediaType}</h3>
                   <div className="pictureContainer">
-                    <img src={anime.pictureUrl} alt="pictureName" />
+                    <img referrerPolicy="no-referrer" src={anime.pictureUrl} alt="pictureName" />
                   </div>
                   <div className="buttonContainer">
                     <button
