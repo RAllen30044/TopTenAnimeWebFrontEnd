@@ -16,7 +16,7 @@ export const About = () => {
           contact me by going to the contact page to send me an email. You can
           also use the anime form provided on the contact page to send me the
           anime information for any missing anime from the site. I appreciate
-          the help in building my site LET'S ENJOY THIS SITE TOGETHER!!!!
+          the help in building my site LET'S ENJOY THIS SITE TOGETHER!!!! THANKS FOR VISITING
         </p>
       </div>
     </div>
